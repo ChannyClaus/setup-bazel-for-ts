@@ -1,0 +1,14 @@
+{
+  "name": "setup-bazel-for-ts",
+  "version": "1.0.0",
+  "description": "Attempting to create a minimal POC that works with [aspect-build/rules_ts](https://github.com/aspect-build/rules_ts).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.9.5"
+  }
+}
