@@ -22,19 +22,15 @@ ts_project(
     declaration = True,
 )
 
-# If run with
-#
-# ```
-# bazel run //js_test:test
-# ```
-#
-# will start a debug session that can be connected to with Visual Studio Code. VSCode will follow
-# the inline source maps to the TypeScript source files (their copies in the output tree) so the
-# debugger will show the TypeScript sources when stepping through code.
 js_test(
-    name = "test",
+    name = "test_compile",
     data = [
         ":to_import"
     ],
     entry_point = "test.js",
+)
+
+js_test(
+    name = "test_to_import",
+    entry_point = "to_import.js",
 )
