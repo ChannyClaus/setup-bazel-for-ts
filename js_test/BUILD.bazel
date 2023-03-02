@@ -11,6 +11,15 @@ ts_project(
     name = "compile",
     srcs = ["test.ts"],
     declaration = True,
+    deps = [
+        ":to_import"
+    ],
+)
+
+ts_project(
+    name = "to_import",
+    srcs = ["to_import.ts"],
+    declaration = True,
 )
 
 # If run with
@@ -24,5 +33,8 @@ ts_project(
 # debugger will show the TypeScript sources when stepping through code.
 js_test(
     name = "test",
+    data = [
+        ":to_import"
+    ],
     entry_point = "test.js",
 )
