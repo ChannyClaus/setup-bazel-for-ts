@@ -1,14 +1,16 @@
-load("@aspect_rules_ts//ts:defs.bzl", "ts_project")
+load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
 load("@aspect_rules_js//js:defs.bzl", "js_test")
+
+ts_config(
+    name = "tsconfig",
+    src = "tsconfig.json",
+    visibility = [":__subpackages__"],
+)
 
 ts_project(
     name = "compile",
     srcs = ["test.ts"],
-    tsconfig = {
-        "compilerOptions": {
-            "inlineSourceMap": True,
-        },
-    },
+    declaration = True,
 )
 
 # If run with
