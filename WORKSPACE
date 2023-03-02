@@ -18,11 +18,11 @@ load("@aspect_rules_ts//ts:repositories.bzl", "rules_ts_dependencies")
 
 rules_ts_dependencies(
     # This keeps the TypeScript version in-sync with the editor, which is typically best.
-    ts_version_from = "//:package.json",
+    # ts_version_from = "//:package.json",
 
     # Alternatively, you could pick a specific version, or use
     # load("@aspect_rules_ts//ts:repositories.bzl", "LATEST_VERSION")
-    # ts_version = LATEST_VERSION
+    ts_version = "4.9.5"
 )
 
 # Fetch and register node, if you haven't already
