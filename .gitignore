@@ -3,3 +3,5 @@ bazel-out
 bazel-testlogs
 node_modules
 bazel-setup-bazel-for-ts
+
+.swp

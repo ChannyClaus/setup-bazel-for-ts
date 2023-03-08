@@ -1,6 +1,19 @@
 load("@aspect_rules_ts//ts:defs.bzl", "ts_config", "ts_project")
-load("@aspect_rules_js//js:defs.bzl", "js_test")
-load("@npm//mocha:index.bzl", "mocha_test")
+# load("@aspect_rules_js//js:defs.bzl", "js_test")
+# load("@npm//mocha:index.bzl", "mocha_test")
+# load("@bazel_skylib//:bzl_library.bzl", "bzl_library")
+
+
+
+# bzl_library(
+#     name = "mocha",
+#     srcs = ["mocha.bzl"],
+#     deps = [
+#         "@aspect_bazel_lib//lib:copy_to_bin",
+#         # this is a bzl_library target, exposing the package_json.bzl file we depend on
+#         "@npm//examples/macro:mocha",
+#     ],
+# )
 
 ts_config(
     name = "tsconfig",
@@ -24,22 +37,54 @@ ts_project(
 )
 
 
-mocha_test(
-    name = "test_mocha_compile",
-    data = [
-        ":compile",
-    ],
+# mocha_test(
+#     name = "test_mocha_compile",
+#     data = [
+#         ":compile",
+#     ],
+# )
+
+# js_test(
+#     name = "test_compile",
+#     data = [
+#         ":to_import"
+#     ],
+#     entry_point = "test.js",
+# )
+
+# js_test(
+#     name = "test_to_import",
+#     entry_point = "to_import.js",
+# )
+
+# load(":foo.bzl", "foo_binary")
+
+# print("BUILD file")
+# foo_binary(name = "bin1")
+# foo_binary(name = "bin2")
+
+load("//path:generator.bzl", "file_generator")
+
+filegroup(
+    name = "test",
+    srcs = ["test.ts"],
 )
 
-js_test(
-    name = "test_compile",
-    data = [
-        ":to_import"
-    ],
-    entry_point = "test.js",
+genrule(
+    name = "file",
+    srcs = [":test"],
+    outs = ["file.txt"],
+    cmd = "mocha $(location :test)",
+#     tools = ["//:generator"],
 )
 
-js_test(
-    name = "test_to_import",
-    entry_point = "to_import.js",
+file_generator(
+    name = "file-two",
+    arg = "some_arg_two",
 )
+
+file_generator(
+    name = "file-three",
+    arg = "some_arg_three",
+)
+

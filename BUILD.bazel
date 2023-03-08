@@ -1,0 +1,30 @@
+load(":foo.bzl", "foo_binary")
+
+print("BUILD file")
+foo_binary(name = "bin1")
+foo_binary(name = "bin2")
+
+load("//path:generator.bzl", "file_generator")
+
+genrule(
+    name = "file",
+    outs = ["file.txt"],
+    cmd = "echo chan > $@",
+#     tools = ["//:generator"],
+)
+
+file_generator(
+    name = "file-two",
+    arg = "some_arg_two",
+)
+
+file_generator(
+    name = "file-three",
+    arg = "some_arg_three",
+)
+
+
+foo_binary(
+    name = "bin",
+    username = "Alice",
+)
